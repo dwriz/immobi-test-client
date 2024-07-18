@@ -6,6 +6,7 @@ import LandingPage from "./pages/LandingPage";
 import AddDepartmentPage from "./pages/AddDepartmentPage";
 import AddEmployeePage from "./pages/AddEmployeePage";
 import AddPositionPage from "./pages/AddPositionPage";
+import EditEmployeePage from "./pages/EditEmployeePage";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/add-position",
         element: <AddPositionPage />,
+      },
+      {
+        path: "/edit-employee/:id",
+        element: <EditEmployeePage />,
       },
     ],
   },

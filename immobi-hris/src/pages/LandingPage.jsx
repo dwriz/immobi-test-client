@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
   const [employees, setEmployees] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [positions, setPositions] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchEmployees() {
@@ -80,9 +82,13 @@ function LandingPage() {
           Swal.fire("Error!", "Failed to delete employee.", "error");
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
+  }
+
+  function handleEdit(employeeId) {
+    navigate(`/edit-employee/${employeeId}`);
   }
 
   return (
@@ -144,6 +150,12 @@ function LandingPage() {
                     {getPositionName(employee.id_jabatan)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
+                    <button
+                      onClick={() => handleEdit(employee.id)}
+                      className="text-blue-600 hover:text-blue-900 mr-2"
+                    >
+                      Edit
+                    </button>
                     <button
                       onClick={() => handleDelete(employee.id)}
                       className="text-red-600 hover:text-red-900"
